@@ -1,0 +1,1522 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <!--<script type="text/javascript">
+    //Promise
+    var p1 = Promise.resolve("Resolve Me");
+
+    p1.then((res) => document.write(`${res}<br/>`));
+
+    var p2 = new Promise(function (resolve, reject) {
+        setTimeout(() => resolve('Resolve Me 2'), 2000);
+
+    });
+    p2.then((res) =>document.write(`${res}<br/>`));
+
+    let randVal = 6;
+
+    var p3 = new Promise(function (resolve, reject) {
+        if (randVal == 6) {
+            resolve("Good Value");
+        } else {
+            reject("Bad Value");
+        }
+    });
+
+    p3.then((val) =>document.write(`${val}<br/>`),
+    (err) => document.write(`${err}<br/>`));
+
+
+    var p4 = new Promise((resolve, reject) => {
+        if (randVal <= 17) {
+            throw new Error("Cant Vote");
+        } else {
+            resolve("Can Vote");
+        }
+    });
+    p4.then((val) =>document.write(`${val}<br/>`))
+    .catch((err) =>document.write(`${err.message}<br/>`));
+
+
+</script>-->
+<script type="text/javascript">
+    //MAP
+    var randMap = new Map();
+    randMap.set("key1", "Random String");
+    randMap.set("key2", 10);
+
+    document.write(randMap.keys.toString(), "<br/>");
+
+    document.write(`key1 : ${randMap.get("key1")}<br/>`);
+    document.write(`key2 : ${randMap.get("key2")}<br/>`);
+
+    document.write(`Map Size : ${randMap.size}<br/>`);
+
+    randMap.forEach(function (value, key) {
+        document.write(`${key} : ${value}<br/>`);
+    });
+
+</script>
+
+<!--<script type="text/javascript">
+    var randSet = new Set();
+    randSet.add(10);
+    randSet.add("Word");
+
+    document.write(`has 10 : ${randSet.has(10)}<br/>`);
+
+    document.write(`Set Size : ${randSet.size}<br/>`);
+
+    randSet.delete(10);
+
+    for (let val of randSet) {
+        document.write(`Set Val : ${val}<br/>`);
+    }
+</script>
+
+<!--<script type="text/javascript">
+    //Array Manipulation
+    let array1 = Array.of(1, 2, 3);
+    let array2 = Array.from("word");
+    let array3 = Array.from(array1, (value) =>value * 2);
+    for (let val of array3) {
+        document.write(`Array Val : ${val}<br/>`);
+    }
+</script>
+
+<script type="text/javascript">
+    //Symbol
+    let capital = Symbol("State capital");
+
+    let pennsylvania = {};
+    pennsylvania[capital] = "Harrisburg";
+    document.write(`Capital of PA : ${pennsylvania[capital]}<br/>`);
+    document.write(`Symbol Capital : ${capital.toString()}<br/>`);
+
+    let employNum = Symbol.for("Employee Number");
+
+    let bobSmith = {};
+    bobSmith[employNum] = 10;
+
+    let sallyMarks = {};
+    sallyMarks[employNum] = 11;
+
+    document.write(`Bob : ${bobSmith[employNum]}<br/>`);
+    document.write(`Sally : ${sallyMarks[employNum]}<br/>`);
+</script>
+
+<script type="text/javascript">
+    //class
+    class MMammal {
+        constructor(name) {
+            this._name = name;
+        }
+        get name() {
+            return this._name;
+        }
+        set name(name) {
+            this._name = name;
+        }
+        static makeMammal(name) {
+            return new MMammal(name);
+        }
+        getInfo() {
+            return `${this.name} is a Mammal`;
+        }
+
+    }
+    let monkey = new MMammal("Fredd");
+
+    monkey.name = "Mark";
+
+    document.write(`Mammal : ${monkey.name} <br/>`);
+
+    let chipmunk = MMammal.makeMammal("Chipper");
+    document.write(`Mammal 2 : ${chipmunk.name}<br/>`);
+
+    class Marsupial extends MMammal {
+        constructor(name, hasPouch) {
+            super(name);
+            this._hasPouch = hasPouch;
+        }
+        get hasPouch() {
+            return this._hasPouch;
+        }
+        set hasPouch(hasPouch)
+        {
+            this._hasPouch = hasPouch;
+        }
+        getInfo() {
+            return `${this.name} is a marsupial`;
+        }
+    }
+    let kangourou = new Marsupial("Paul", true);
+    document.write(`It is ${kangourou.hasPouch} that ${kangourou.name}
+        has a pouch<br/>`);
+
+    document.write(`${chipmunk.getInfo()}<br/>`);
+    document.write(`${kangourou.getInfo()}<br/>`);
+
+    function getClass(classType) {
+        if (classType == 1) {
+            return MMammal;
+        } else {
+            return Marsupial;
+        }
+    }
+
+    class Koala extends getClass(2) {
+        constructor(name) {
+            super(name);
+        }
+    }
+    let carl = new Koala("Carl");
+    document.write(`${carl.getInfo()}<br/>`);
+
+</script>
+<script type="text/javascript">
+    function createAnimal(name, owner) {
+        return {
+            name,
+            owner,
+            getInfo() {
+                return `${this.name} is owned by ${this.owner}`;
+            },
+            address: {
+                street: '123 Main st',
+                city: 'Montreal'
+            }
+        };
+    };
+    var spot = createAnimal("Spot", "Doug");
+    document.write(`${spot.getInfo()}<br/>`);
+
+    document.write(`${spot.name} is at ${spot.address.street}<br/>`);
+
+    document.write(`${Object.getOwnPropertyNames(spot).join(" ")}<br/>`);
+
+</script>
+
+<script type="text/javascript">
+    function ggetSum(num1, num2) {
+        document.write(`${num1} + ${num2} = ${num1 + num2}<br/>`);
+        document.write(`${arguments[0]} + ${arguments[1]}<br/>`);
+    }
+    ggetSum(1, 2);
+    // ... will indicated many value passed
+    // treat it as an array
+    function getSumMore(...vals) {
+        let sum = 0;
+        for (let i = 0, len = vals.length; i < len ; i++) {
+            sum += vals[i];
+        }
+        document.write(`The sum is ${sum}<br/>`);
+    }
+    getSumMore(30, 45, 12, 123);
+    //declare function using let
+    let difference = (num1, num2) => num1 - num2;
+
+    document.write(`5 - 10 = ${difference(5, 10)}<br/>`);
+
+    let mult = (num1, num2) => {
+        let product = num1 * num2;
+        document.write(`${num1} * ${num2} = ${product}<br/>`);
+    }
+
+    mult(5, 50);
+
+
+    let valArr = [1, 2, 3, 4, 5];
+    //reduce takes a and b and give back something to the array;
+    let sumVals = valArr.reduce((a, b) => a + b);
+    document.write(`Sum : ${sumVals}<br/>`);
+
+    //filter takes only those who match
+    let evens = valArr.filter(v=>v % 2 == 0);
+    document.write(`Evens : ${evens}<br/>`);
+
+    //
+    let doubles = valArr.map(v => v * 2);
+    document.write(`Doubles : ${doubles}<br/>`);
+</script>
+
+<script type="text/javascript">
+
+    if (true) {
+        //global variable
+        var x = 10;
+        document.write("x = " + x + "<br/>");
+    }
+    document.write("x = " + x + "<br/>");
+    var y = 10;
+    if (true) {
+        //let is local variable
+        let y = 20;
+        document.write("y = " + y + "<br/>");
+    }
+    document.write("y = " + y + "<br/>");
+
+    const PI = 3.14159;
+    //Cannot assign value to Const
+    //PI = 2.136;
+    document.write("PI = " + PI + "<br/>");
+    if (true) {
+        //local const
+        const PI = 123456;
+        document.write("PI = " + PI + "<br/>");
+    }
+
+    document.write(typeof true, "<br/>");
+    document.write(typeof 3.14, "<br/>");
+    document.write(typeof "string", "<br/>");
+    document.write(typeof Symbol(), "<br/>");
+    document.write(typeof {a: 1}, "<br/>");
+    document.write(typeof [1, 2, 3], "<br/>");
+    document.write(typeof undefined, "<br/>");
+
+    let fName = "Derek";
+    let lName = "Bananas";
+
+    // how to print using ``
+    document.write(`${fName} ${lName}<br/>`);
+
+
+    let num1 = 10;
+    let num2 = 5;
+
+    document.write(`10 * 5 = ${num1 * num2}<br/>`);
+
+    function doMath(strings, ...values){
+        if (strings[0] == 'Add') {
+            document.write(`${values[0]} + ${values[1]} = ${values[0] + values[1]}<br/>`);
+        }else if (strings[0] == 'Sub') {
+            document.write(`${values[0]} - ${values[1]} = ${values[0] - values[1]}<br/>`);
+        }
+    }
+
+    doMath `Add${10} ${20}`;
+    doMath `Sub${10} ${20}`;
+
+
+    for (let c of fName) {
+        document.write(`${c}<br/>`);
+    }
+
+    document.write("Hello ".repeat(3) + "<br/>");
+
+    document.write(fName.startsWith("De"), "<br/>");
+
+    document.write(fName.endsWith("ek"), "<br/>");
+
+    document.write(fName.includes("ere"), "<br/>");
+
+    let multilinestr = "This is \
+    a multiline \
+    string";
+
+    document.write(`${multilinestr}<br/>`);
+
+    let bac = `This is
+    a multiline
+    string`;
+
+    document.write(`${bac}<br/>`);
+
+    //but still print in one line
+    //still have to use <br/>
+</script>
+
+<script type="text/javascript">
+    var Observable = function(){
+        this.subscribers = [];
+    }
+    Observable.prototype = {
+        subscribe: function(subscriber){
+            this.subscribers.push(subscriber);
+        },
+        unsubscribe: function(unsubscriber){
+            for (i = 0; i < this.subscribers.length; i++) {
+                this.subscribers.splice(i, 1);
+                return unsubscriber.name;
+            }
+        },
+        publish: function(data){
+            for (i = 0; i < this.subscribers.length; i++) {
+                this.subscribers[i].receiveData(data);
+            }
+        }
+    };
+
+    var OrganFanny = {
+        name: "Organ Fanny",
+        receiveData: function(data){
+            document.write(this.name + " received your info " + data + "<br/>");
+        }
+    }
+    var BoldmanYaks = {
+        name: "Boldman Yaks",
+        receiveData: function(data){
+            document.write(this.name + " received your info " + data + "<br/>");
+        }
+    }
+
+    observable = new Observable();
+
+    observable.subscribe(OrganFanny);
+    observable.subscribe(BoldmanYaks);
+
+    observable.publish("IBM at $145.30");
+
+    document.write(observable.unsubscribe(OrganFanny) + " unsubcribed" + "<br/>");
+
+
+    observable.publish("IBM at $144.30");</script>
+
+<script type="text/javascript">
+    function Pizza(price){
+        this.price = price || 10;
+    }
+    Pizza.prototype.getPrice = function(){
+        return this.price;
+    }
+
+    function ExtraCheese(pizza){
+        var prevPrice = pizza.price;
+        pizza.price = prevPrice + 1;
+    }
+
+    var myPizza = new Pizza(10);
+
+    ExtraCheese(myPizza);
+
+    document.write("Cost of Pizza : $", myPizza.getPrice() + "<br/>");
+</script>
+
+<script type="text/javascript">
+    function Sword(desc){
+        this.weaponType = "Sword";
+        this.metal = desc.metal || "Steel";
+        this.style = desc.style || "Longsword";
+        this.hasMagic = desc.hasMagic || false;
+    }
+    function Bow(desc){
+        this.weaponType = "Bow";
+        this.material = desc.metal || "Wood";
+        this.style = desc.style || "Longbow";
+        this.hasMagic = desc.hasMagic || false;
+    }
+    function WeaponFactory(){
+        WeaponFactory.prototype.makeWeapon = function(desc){
+            var weaponClass = null;
+
+            if (desc.weaponType === "Sword") {
+                //return new Sword(desc);
+                weaponClass = Sword;
+            }else if (desc.weaponType === "Bow") {
+                //return new Bow(desc);
+                weaponClass = Bow;
+            }else {
+                return false;
+            }
+            return new weaponClass(desc);
+        }
+    }
+
+    var myWeaponFact = new WeaponFactory();
+
+    var bladeFist = myWeaponFact.makeWeapon({
+        weaponType: "Sword",
+        metal: "Dark Iron",
+        style: "Scythe",
+        hasMagic: true
+    });
+
+    document.write(bladeFist.weaponType + " of type " + bladeFist.style + " creafted from " + bladeFist.metal + "<br/>");
+
+</script>
+
+
+<script type="text/javascript">
+    function Hero(name){
+        //check if there is already a Hero
+        //If true, return the already created Hero
+        if(typeof Hero.instance === 'object'){
+            return Hero.instance;
+        }
+        //Else create a new one
+        this.name = name;
+        Hero.instance = this;
+        return this;
+    }
+
+    var derek = Hero("Derek");
+
+    document.write("Our Hero is " + derek.name + "<br/>");
+
+    var paul = Hero("Paul");
+
+    document.write("Our Hero is " + derek.name + "<br/>");
+    //Hero is named Derek, beacause Derek was created first
+</script>
+
+<script type="text/javascript">
+    //Normal way
+    var addStuff = {
+        sum: function (num1, num2) {
+            return num1 + num2;
+        }
+    };
+    document.write("1 + 2 = ", addStuff.sum(1, 2), "<br/>");
+    //ECMA Script
+    //Not in all browser
+    var addStuff = {
+        sum(num1, num2) {
+            return num1 + num2;
+        }
+    }
+    document.write("1 + 2 = ", addStuff.sum(1, 2), "<br/>");
+
+
+    //Class
+    //Normal Way
+    //Class Dont exist in javascript yet
+    var Point = function (xPos, yPos) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+    };
+
+    Point.prototype.getPos = function () {
+        return "X: " + this.xPos + " Y: " + this.yPos;
+    };
+
+    var point = new Point(100, 300);
+
+    document.write("Point Pos : " + point.getPos() + "<br/>");
+
+    //ECMA Script
+    //With Class
+
+    class aPoint {
+        constructor(xPos, yPos){
+            this.xPos = xPos;
+            this.yPos = yPos;
+        }
+        getPos(){
+            return "X: " + this.xPos + " Y: " + this.yPos;
+        }
+    }
+
+    var point = new aPoint(100, 300);
+    document.write("Point Pos : " + point.getPos() + "<br/>");
+
+    class Animal{
+        constructor(name){
+            this.name = name;
+        }
+        toString(){
+            return "Animal is name " + this.name + "<br/>";
+        }
+        static getAnimal(){
+            return new Animal("No Name");
+        }
+    }
+
+    class Dog extends Animal{
+        constructor(name, owner){
+            //super means base
+            super(name);
+            this.owner = owner;
+        }
+        toString(){
+            return super.toString() + "<br/> Dog is named " + this.name;
+        }
+    }
+    var rover = new Dog("Rover", "Paul");
+
+    document.write(rover.name + " is owned by " + rover.owner + "<br/>");
+
+    document.write(rover.toString(), "<br/>");
+
+    var bowser = Animal.getAnimal();
+
+    document.write("Bowser info : " + bowser.toString());
+</script>
+
+<script type="text/javascript">
+    function Vehicle(name) {
+        this.name = "Vehicle";
+    }
+
+    Vehicle.prototype = {
+        drive: function () {
+            return this.name + " drives forward";
+        },
+        stop: function () {
+            return this.name + " stopd";
+        }
+    }
+
+    function Truck(name) {
+        this.name = name;
+    }
+
+    Truck.prototype = new Vehicle();
+    Truck.prototype.constructor = Truck;
+    //Overwrite
+    Truck.prototype.drive = function () {
+        var driveMsg = Vehicle.prototype.drive.apply(this);
+        return driveMsg += " througn a field";
+    }
+
+    var jeep = new Truck("Jeep");
+
+    document.write(jeep.drive(), "<br/>");
+    document.write(jeep.stop(), "<br/>");
+</script>
+
+<script type="text/javascript">
+    //Class Inhertance
+
+    function AAnimal() {
+        this.name = "Animal";
+
+        this.toString = function () {
+            return "My name is " + this.name;
+        };
+    }
+
+    function Canine() {
+        this.name = "Canine";
+    }
+
+    function Wolf() {
+        this.name = "Wolf";
+    }
+    //Here define inheritance
+    Canine.prototype = new AAnimal();
+    Wolf.prototype = new Canine();
+    //Here define use the old constructor
+    Canine.prototype.constructor = Canine;
+    Wolf.prototype.constructor = Wolf;
+
+    var arcticWolf = new Wolf();
+    //Note that only Animal have toString()
+    //And articWolf uses the toString() of Animal to display Wolf
+    document.write(arcticWolf.toString(), "<br/>");
+
+    //Check if Wolf is an instance of Animal
+    //True
+    document.write("Wolf instance of Animal : " + (arcticWolf instanceof AAnimal) + "<br/>");
+
+    AAnimal.prototype.sound = "Grrrr";
+
+    AAnimal.prototype.getSound = function () {
+        return this.name + " says " + this.sound;
+    }
+
+    Canine.prototype.sound = "Woof";
+    Wolf.prototype.sound = "Grrrr Woof";
+
+    document.write(arcticWolf.getSound() + "<br/>");
+
+    function Rodent() {
+        this.name = "Rodent";
+    }
+
+    function Rat() {
+        this.name = "Rat";
+    }
+    Rodent.prototype = new AAnimal();
+    Rat.prototype = Rodent.prototype;
+
+    Rodent.prototype.constructor = Rodent;
+    Rat.prototype.constructor = Rat;
+
+    var caneRat = new Rat();
+
+    document.write(caneRat.toString() + "<br/>");
+
+
+    function extend(Child, Parent) {
+        var Temp = function () { };
+        Temp.prototype = Parent.prototype;
+        Child.prototype = new Temp();
+        Child.prototype.constructor = Child;
+    }
+
+    function Deer() {
+        this.name = "Deer";
+        this.sound = "Snort";
+    }
+
+    extend(Deer, AAnimal);
+
+    var elk = new Deer();
+
+    document.write(elk.getSound(), "<br/>");
+
+</script>
+
+<script type="text/javascript">
+    var Circle = function (radius) {
+        this._radius = radius;
+    }
+
+    Circle.prototype = {
+        set radius(radius) { this._radius = radius },
+        get radius() { return this._radius; },
+        get area() { return Math.PI * (this._radius * this._radius); }
+    };
+
+    var circ = new Circle(10);
+
+    circ.radius = 15;
+
+    document.write("A Circle with radius " + circ.radius + " has an area of " + circ.area.toFixed(2) + "<br/>");
+
+</script>
+
+<script type="text/javascript">
+    function Point() {
+        this.yPos = 0;
+        this.xPos = 0;
+    }
+
+    Object.defineProperty(Point.prototype, "pointPos",
+        {
+            get: function () {
+                return "X : " + this.xPos + " Y : " + this.yPos;
+            },
+            set: function (thePoint) {
+                var parts = thePoint.toString().split(", ");
+                this.xPos = parts[0] || '';
+                this.yPos = parts[1] || '';
+            }
+        })
+
+    var aaPoint = new Point();
+
+    aaPoint.pointPos = "100, 200";
+
+    document.write("Point Position : " + aaPoint.pointPos + "<br/>");
+
+</script>
+
+<script type="text/javascript">
+    //get set
+    var address = {
+        street: "No Street",
+        city: "No City",
+        state: "No State",
+        get getAddress() {
+            return this.street + ", " + this.city + ", "
+            + this.state;
+        },
+        set setAddress(theAddress) {
+            var parts = theAddress.toString().split(", ");
+            this.street = parts[0];
+            this.city = parts[1];
+            this.state = parts[2];
+        }
+    }
+    address.setAddress = "123 Main St, Montreal, QC";
+
+    document.write("Address : " + address.getAddress + "<br/>");
+    document.write("City : " + address.city + "<br/>");
+
+
+    //another way of getter setter
+    function Coordinates() {
+        this.latitude = 0;
+        this.longitude = 0;
+    }
+    Object.__defineGetter__.call(Coordinates.prototype, "getCoords", function () {
+        return "Lat : " + this.latitude + " Long : " + this.longitude;
+    });
+    Object.__defineSetter__.call(Coordinates.prototype, "setCoords", function (coords) {
+        var parts = coords.toString().split(", ");
+        this.latitude = parts[0] || "";
+        this.longitude = parts[1] || "";
+    });
+
+    var testCoords = new Coordinates();
+
+    testCoords.setCoords = "40.71, 74.00";
+    document.write("Address : " + testCoords.getCoords + "<br/>");
+
+</script>
+
+
+<script type="text/javascript">
+    //private property
+
+    function SecretCode() {
+        var secretNum = 78;
+
+        this.guessNum = function (num) {
+            if (num > secretNum) {
+                return "Lower";
+            } else if (num < secretNum) {
+                return "Higher";
+            } else {
+                return "You Guessed it";
+            }
+        }
+    }
+
+    var secret = new SecretCode();
+
+    document.write("Value of secretNuim : " + secret.guessNum(78), "<br/>");
+    //cannot access private var
+    //SecretCode.prototype.getSecret = function () {
+    //    return this.secretNum;
+    //}
+</script>
+
+<script type="text/javascript">
+
+    function Mammal(name) {
+        this.name = name;
+        this.getInfo = function () {
+            return "The mammals name is " + this.name;
+        }
+    }
+    //using prototye
+    Mammal.prototype.sound = "Grrr";
+    Mammal.prototype.makeSound = function () {
+        return this.name + " says " + this.sound;
+    }
+
+    var grover = new Mammal("Grover");
+    document.write(grover.makeSound(), "<br/>");
+    //loop all property of grover
+    for (var prop in grover) {
+        document.write(prop + " : " + grover[prop] + "<br/>");
+    }
+
+    document.write("name Property of grover : " + grover.hasOwnProperty("name") + "<br/>");
+    document.write("sound Property of Grover : " + grover.hasOwnProperty("sound") + "<br/>");
+
+    Array.prototype.inArray = function inArray(value) {
+        for (i = 0; i < this.length; i++) {
+            if(this[i] === value){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    var sampArray = [1, 2, 3, 4, 5];
+
+    document.write("3 in Array : " + sampArray.inArray(3), "<br/>");
+
+
+
+
+    function getSum(num1, num2) {
+        return num1 + num2;
+    }
+
+    //get the number of argument getSum received
+    document.write("Num of arguments " + getSum.length + "<br/>");
+
+</script>
+
+<script type="text/javascript">
+
+    var customer = {
+        name: "Tom Smith",
+        speak: function () {
+            return "My Name is " + this.name;
+        },
+        address: {
+            street: "123 Main St",
+            city: "Pittsburgh",
+            state: "PA"
+        }
+    };
+    document.write(customer.speak() + "<br/>");
+    document.write(customer.name + " lives at " + customer.address.street + "<br/>");
+    customer.address.country = "US";
+    document.write(customer.address.country + "<br/>");
+    function Person(name, street) {
+        this.name = name;
+        this.street = street;
+        this.info = function () {
+            return "My name is " + this.name + " and I Live on " + this.street;
+        }
+    }
+
+    var bobsmith = new Person("Bob Smith", "234 Main St");
+
+    document.write(bobsmith.info(), "<br/>");
+    document.write("Bob is a Person " + (bobsmith instanceof Person) + "<br/>");
+
+    function changeName(person) {
+        person.name = "Sue Smith";
+    }
+
+    changeName(bobsmith);
+
+    document.write("Bob became " + bobsmith.name + "<br/>");
+
+    var person1 = new Person("Paul", "123 Main");
+    var person2 = new Person("Paul", "123 Main");
+    document.write("Are they equal " + (person1 == person2) + "<br/>");
+
+
+
+</script>-->
+<!--Catch Error-->
+<!--<script>
+    var custArray = ["Tom", "Bob", "Sally", "Sue"];
+
+    var getCust = function (index) {
+        if (index > custArray.length) {
+            throw new RangeError("Index must be >= 0 and <= " + custArray.length);
+        } else {
+            return custArray[index];
+        }
+    }
+</script>
+
+
+<div>
+    Enter Your Name:
+
+    <input id="name" name="name" type="text" size="30"
+           onblur="isTheFieldEmpty(this, document.getElementById('name_help'))"/>
+    <span id="name_help"></span>
+</div>
+<script>
+    function editNodeText(regex, input, helpId, helpMessage) {
+        if (!regex.test(input)) {
+            if (helpId != null) {
+                while (helpId.childNodes[0]) {
+                    helpId.removeChild(helpId.childNodes[0]);
+                }
+                helpId.appendChild(document.createTextNode(helpMessage));
+            } else {
+                if (helpId != null) {
+                    while(helpId.childNodes[0]){
+                        helpId.removeChild(helpId.childNodes[0]);
+                    }
+                }
+            }
+        }
+    }
+    function isTheFieldEmpty(inputField, helpID) {
+        return editNodeText(/^[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}/,
+            inputField.value, helpID, "Please enter a valid name");
+    }
+</script>
+
+
+<!--OO JavaScript-->
+<!--<script>
+    var cust1 = {
+        name: "John Smith",
+        street: "123 Main",
+        city: "Pittsburg",
+        state: "PA",
+        email: "jsmith@aol.com",
+        balance: 120.50,
+        payDownBal: function (amtPaid) {
+            this.balance -= amtPaid;
+        },
+        addToBal: function (amtCharged) {
+            this.balance += amtCharged;
+        }
+    }
+
+    document.write("Customer Name : ", cust1.name, "<br/>");
+    cust1.street = "215 Main";
+    document.write("Customer Street : ", cust1.street, "<br/>");
+    cust1.country = "US";
+    document.write("Customer Country : ", cust1.country, "<br/>");
+    delete cust1.country;
+
+    for (var prop in cust1) {
+        if(cust1.hasOwnProperty(prop)){
+            document.write(prop, "<br/>");
+        }
+    }
+
+    document.write("name in cust1 : ", "name" in cust1, "<br/>");
+    //return if cust1 has name
+
+    function getInfo(cust) {
+        return cust.name + " lives at " + cust.street + " in " + cust.city
+    + " " + cust.state + " email : " + cust.email + " and has a balance of $" + cust.balance;
+    }
+
+    document.write(getInfo(cust1), "<br/>");
+
+
+    cust1.payDownBal(20.50);
+
+    cust1.addToBal(10.00);
+
+    document.write(getInfo(cust1), "<br/>");
+
+
+</script>
+
+<script>
+    function Customer(name, street, city, state, email, balance) {
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.email = email;
+        this.balance = balance;
+        this.payDownBal = function (amtPaid) {
+            this.balance -= amtPaid;
+        };
+        this.addToBal = function (amtCharged) {
+            this.balance += amtCharged;
+        };
+    }
+
+    var cust2 = new Customer("Sally Smith", "234 Main", "Montreal", "QC", "ss@gmail.com", 0.00);
+
+    cust2.addToBal(15.50);
+
+    Customer.prototype.isCreditAvail = true;
+    //add a Property to Customer
+
+    Customer.prototype.toString = function () {
+        return this.name + " lives at " + this.street
+        + " in " + this.city + " " + this.state
+        + " email : " + this.email + " and has a balance of $"
+        + this.balance.toFixed(2) + " Creditworthy : " + this.isCreditAvail;
+    };
+    //overwrite the toString()
+
+    document.write(cust2.toString());
+</script>
+
+<div id="sampDiv">
+    Lorem ipsum dolor sit amet,
+    consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    Excepteur sint occaecat cupidatat non proident,
+    sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+<div id="sampDiv2">
+    <p>
+        Lorem ipsum dolor sit amet,
+        <em>consectetur <strong>adipisicing</strong> elit,</em>
+    </p>
+    <p>
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <em>Ut enim ad <strong>minim</strong> veniam,</em>
+    </p>
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    Excepteur sint occaecat cupidatat non proident,
+    sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+<button id="chgBkColor">Background Color</button>
+<button id="chgBkImg">Background Image</button>
+<button id="chgBorderStyle">Border Style</button>
+<button id="chgBorderWidth">Boder Width</button>
+<button id="chgBorderColor">Border Color</button>
+<br />
+
+<img src="miao1.jpg" id="logo2" alt="NTT Logo" height="180" width="180"/>
+<br />
+
+<button id="goToGoogle">Go to Google</button><br />
+<button id="forwardPage">Forward Page</button><br />
+<button id="backPage">Back Page</button><br />
+<button id="reload">reload Page</button><br />
+<script>
+    document.write("Current URL : ", window.location.href, "<br/>");
+    document.write("Current HOst : ", window.location.hostname, "<br/>");
+    document.write("Current Path : ", window.location.pathname, "<br/>");
+    document.getElementById('goToGoogle').onclick = function (event) {
+        window.location.href = "http://google.com";
+    }
+    document.getElementById('forwardPage').onclick = function (event) {
+        history.forward();
+    }
+    document.getElementById('backPage').onclick = function (event) {
+        history.back();
+    }
+    //history.go(-2);
+    //
+    document.getElementById('reload').onclick = function (event) {
+        window.location.reload();
+    }
+
+
+
+
+
+    var pElements = document.getElementsByTagName('p');
+    pElements[1].style.backgroundColor = '#EFDECD';
+    //this will change the background color of the second <p><p/>
+
+    document.childNodes[1].style.backgroundColor = '#FAEBD7';
+    //this will change the background color of the html page
+
+    var sampDiv2 = document.getElementById('sampDiv2');
+    sampDiv2.childNodes[1].style.backgroundColor = "#F0FFFF";
+
+    //sampDiv2.childNodes[1].childNodes[0].style.backgroundColor = "#BFAFB2";
+    document.write("Node Type : ", sampDiv2.childNodes[0].nodeType, "<br/>");
+    document.write("Node Name : ", sampDiv2.childNodes[0].nodeName, "<br/>");
+
+    var nttLogo2 = document.getElementById('logo2');
+
+    document.write("Logo has alt : ", nttLogo2.hasAttribute("alt"), "<br/>");
+
+    nttLogo2.setAttribute("alt", "NTTLogo2");
+
+    document.write("Logo alt value : ", nttLogo2.getAttribute("alt"), "<br/>");
+
+    var attribList = document.getElementById('logo2').attributes;
+
+    for (i = 0; i < attribList.length; i++) {
+        document.write("Attribute ", i, " : ", attribList[i].nodeName, ".", attribList[i].value, "<br/>");
+    }
+
+    var paragraph3 = document.createElement("p");
+
+    paragraph3.setAttribute("id", "paragraph3");
+
+    paragraph3.innerHTML = "asdfasdfasdfasdf";
+
+    sampDiv2.appendChild(paragraph3);
+
+    sampDiv2.insertBefore(paragraph3, sampDiv2.childNodes[0]);
+</script>
+<script>
+    document.getElementById('chgBkColor').onclick = function (event) {
+        document.getElementById('sampDiv').style.backgroundColor = "#EFDECD";
+    }
+    document.getElementById('chgBkImg').onclick = function (event) {
+        document.getElementById('sampDiv').style.backgroundImage = "url('miao1.jpg')";
+    }
+    document.getElementById('chgBorderStyle').onclick = function (event) {
+        document.getElementById('sampDiv').style.borderStyle = "solid";
+    }
+    document.getElementById('chgBorderWidth').onclick = function (event) {
+        document.getElementById('sampDiv').style.borderWidth = "thick";
+    }
+    document.getElementById('chgBorderColor').onclick = function (event) {
+        document.getElementById('sampDiv').style.borderColor = "blue";
+    }
+
+</script>
+<a href="Chess.html">Chess</a>'
+<p id="kay"></p>
+<script>
+    function openAlert(mess) {
+        alert(mess);
+    }
+
+</script><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<a href="JavaScript:void(0)" onclick="alert('Hello')">Say Hello</a>
+<!--This will not reload the page, and also make the words blue-->
+<!--<br />
+<a onclick="alert('Hello')">Say Hello</a>
+<!--This will not reload the page, but the words are not blue-->
+<!--<br />
+<a href="" onclick="alert('Hello')">Say Hello</a>
+<!--This will reload the page, and make the words blue-->
+<!--<br />
+<a href="JavaScript:void(0)" onmouseover="openAlert('Hi How Are You')">Hi How are you</a>
+<br />
+<a href="JavaScript:void(0)"
+   onmouseover="this.style.color='red'"
+   onmouseout="this.style.color='blue'"
+   ondblclick="this.text='You Double Clicked me'"
+   onmousedown="this.text='Don\'t press hard'"
+   onmouseup="this.text='Thank you'">HERE</a>
+<br />
+<input type="text" id="randInput"
+       onchange="var dataEntered = document.getElementById('randInput').value;
+alert('User Typed ' + dataEntered)"/>
+<form action="#" id="sampForm">
+    <input id="charInput" type="text" />
+    <p id="keyData">Key Data Here</p>
+    <input type="submit" value="Submit" />
+    <input type="reset" value="Reset"/>
+</form>
+<br />
+<img id="logo" src="miao.jpg">
+<button id="logoButton">Get Logo</button>
+<input id="mouseInput" type="text" size="30"/>
+<br />
+Mouse X: <input type="text" id="mouseX" />
+<br />
+Mouse Y: <input type="text" id="mouseY" />
+<br />
+<button id="clearInputs">Clear all Inputs</button>
+<script>
+    function getChar(event) {
+        if (event.which == null) {
+            return String.fromCharCode(event.keyCode);
+            //For IE
+        } else if (event.which != 0 && event.charCode != 0) {
+            return String.fromCharCode(event.which);
+            //For else
+        } else {
+            return null;
+            //For UnKnown Character code
+        }
+    };
+    document.getElementById('charInput').onkeypress =
+        function (event) {
+            var char = getChar(event || window.event);
+            if (!char) {
+                return false;
+            }
+            document.getElementById('keyData').innerHTML = char + " was clicked";
+            return true;
+        };
+    document.getElementById('charInput').onfocus =
+        function (event) {
+            document.getElementById('keyData').innerHTML = "Input Gained Focus";
+        };
+    document.getElementById('charInput').onselect =
+        function (event) {
+            document.getElementById('keyData').innerHTML = "Text Selected";
+        };
+    document.getElementById('logoButton').onclick =
+        function (event) {
+            document.getElementById('logo').className = "show";
+        };
+    document.getElementById('logo').onclick =
+        function (event) {
+            document.getElementById('logo').className = "hidden";
+        };
+
+    document.getElementById('logo').onmouseover =
+        function (event) {
+            document.getElementById('logo').src = "miao1.jpg";
+            document.getElementById('mouseInput').value = "mouse over Image";
+        };
+    document.getElementById('logo').onmouseout =
+        function (event) {
+            document.getElementById('logo').src = "miao.jpg";
+            document.getElementById('mouseInput').value = "mouse left Image";
+        };
+    document.body.onmousemove = function (e) {
+        e = e || window.event;
+
+        var pageX = e.pageX;
+        var pageY = e.pageY;
+
+        if (pageX == undefined) {
+            pageX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            pageY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+
+        document.getElementById('mouseX').value = pageX;
+        document.getElementById('mouseY').value = pageY;
+    }
+    document.getElementById('clearInputs').onclick = function (event) {
+        var inputElements = document.getElementsByTagName('input');
+
+        for (var i = 0; i < inputElements.length; i++) {
+            if (inputElements[i].type == "text") {
+                inputElements[i].value = "";
+            }
+        }
+    }
+</script>
+<br /><br /><br /><br /><br /><br /><br /><br />
+
+
+
+
+<script>
+    function factorial(num) {
+        if(num <= 1)
+        {
+            return 1;
+        } else {
+            return num * factorial(num - 1);
+        }
+    }
+    document.write("Factorial of 4 = ", factorial(4), "<br/>");
+    //4 * 3 * 2 * 1
+</script>
+<script>
+    function times2(theArray) {
+        var newArray = [];
+        for (i = 0; i < theArray.length; i++) {
+            newArray.push(theArray[i] * 2);
+        }
+        return newArray;
+    }
+
+    document.write("Array Double = ", times2([1, 2, 3, 4, 5]).toString(), "<br/>");
+
+</script>
+<script>
+    function inArray(arrayToCheck, value) {
+        //No Type needed?
+        for (i = 0; i < arrayToCheck.length; i++) {
+            if(arrayToCheck[i] === value)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    var randArray = [1, 2, 3, 4, 5];
+    document.write("In Array : ", inArray(randArray, 8), "<br/>");
+
+    function times2(num) {
+        var var2 = 2;
+        return num * var2;
+    }
+
+    function times3(num) {
+        return num * 3;
+    }
+
+    function multiply(func, num) {
+        return func(num);
+    }
+
+    document.write("2 * 15 = ", multiply(times2, 15), "<br/>");
+    document.write("3 * 15 = ", multiply(times3, 15), "<br/>");
+    //passing function as parameters
+
+    var triple = function (num) {
+        return num * 3;
+    }
+    document.write("3 * 15 = ", multiply(triple, 15), "<br/>");
+
+    function getSum() {
+        //did not define how many argument
+        var sum = 0;
+        for (i = 0; i < arguments.length; i++) {
+            //Did not define arguments, system implemented
+            sum += arguments[i];
+        }
+        return sum;
+    }
+    //put many argument you like to getSum
+    document.write("Sum = ", getSum(1, 2, 3, 4, 5, 6), "<br/>");
+
+
+</script>
+<script>
+    var tomSmith = ["Tom Smith", "123 Main", 120.50];
+    document.write("1st Index ", tomSmith[0], "<br/>");
+    document.write("Array : ", tomSmith.valueOf(), "<br/>");
+    tomSmith[3] = "tSmith@aol.com";
+    document.write("Array : ", tomSmith.valueOf(), "<br/>");
+    tomSmith.splice(2, 1, "Pittsburgh", "PA");
+    //replace 1 element, start from index 2
+    document.write("Array : ", tomSmith.valueOf(), "<br/>");
+    tomSmith.splice(4, 1);
+    //delet e1 element, start from index 4
+    document.write("Array : ", tomSmith.valueOf(), "<br/>");
+    //or .tostring()
+    document.write("Array : ", tomSmith.join(", "), "<br/>");
+    //join define how to seperate array items
+    delete tomSmith[3];
+
+    tomSmith.sort();
+
+    var numbers = [4, 3, 9, 1, 20, 43];
+
+    numbers.sort(function (x, y) { return x - y });
+    document.write("Numbres ", numbers.valueOf(), "<br/>");
+
+    numbers.sort(function (x, y) { return y - x });
+    document.write("Numbres ", numbers.valueOf(), "<br/>");
+
+    document.write("Array : ", tomSmith.valueOf(), "<br/>");
+    var combinedArray = numbers.concat(tomSmith);
+    document.write("Combined Array : ", combinedArray.valueOf(), "<br/>");
+    combinedArray.pop();
+    //remove at the end
+    document.write("Combined Array : ", combinedArray.valueOf(), "<br/>");
+    combinedArray.push("555-1122", "US");
+    //add at the end
+    document.write("Combined Array : ", combinedArray.valueOf(), "<br/>");
+
+    combinedArray.shift();
+    //remove at the beginning
+    document.write("Combined Array : ", combinedArray.valueOf(), "<br/>");
+
+    combinedArray.unshift("Something else");
+    //add at the beginning
+    document.write("Combined Array : ", combinedArray.valueOf(), "<br/>");
+
+    for (i = 0; i < tomSmith.length; i++) {
+        document.write(combinedArray[i], "<br/>");
+    }
+</script>
+<script>
+    for (i = 0; i < 20; i++) {
+        if ((i % 2) === 0) {
+            continue;
+        }
+        if (i === 15) {
+            break;
+        }
+        document.write(i + "<br/>");
+    }
+    var customer = { name: "Bob Thomas", address: "123 Main", balance: 50.50 };
+    for (k in customer) {
+        document.write(customer[k] + "<br/>");
+    }
+</script>
+<script>
+    //Relational Operators : == != < > <= >= ===
+    // == verify the value of variable
+    // === verify the value and the type of variable
+    //Logical Operators : && || !
+
+    var age = 8;
+
+    if (age >= 5 && age <= 6) {
+        document.write("Go to kindle Garden <br/>");
+    } else if (age > 18) {
+        document.write("Go to College <br/>");
+    } else {
+        document.write("Go to Grade <br/>");
+    }
+
+    document.write("true || false ", true || false, "<br/>");
+    document.write("!true ", !true, "<br/>");
+    document.write("\"5\" == 5 = ", ("5" == 5), "<br/>");
+    document.write("\"5\" === 5 = ", ("5" === 5), "<br/>");
+
+    switch (age) {
+        case 5:
+        case 6:
+            document.write("Case 5 and 6" + "<br/>");
+            break;
+        case 7:
+            document.write("Case 7" + "<br/>");
+            break;
+        default:
+            document.write("Substract your age to 5 <br/>");
+            break;
+    }
+    // (condition)? ifTrue : ifFalse
+    // if condition is true, assign to the variable the value of left,
+    // else assign it with the value of the right
+    var canVote = (age >= 18) ? true : false;
+
+    var i = 1;
+
+    while (i <= 10) {
+        document.write(i + "<br/>");
+        i++;
+    }
+
+    do {
+        var guess = prompt("Guess a number between 1 and 20");
+    } while (guess != 15);
+
+    alert("You guessed it");
+</script>
+<script>
+    document.write("5 + 4 = ", 5 + 4, "<br/>");
+    document.write("5 - 4 = ", 5 - 4, "<br/>");
+    document.write("5 * 4 = ", 5 * 4, "<br/>");
+    document.write("5 / 4 = ", 5 / 4, "<br/>");
+    document.write("5 % 4 = ", 5 % 4, "<br/>");
+    document.write("5 + 4 = " + 5 + 4, "<br/>");
+    document.write("Max Value ", Number.MAX_VALUE, "<br/>");
+    document.write("Min Value ", Number.MIN_VALUE, "<br/>");
+    precisionTest = 1.00000000001;
+    document.write(precisionTest + 1.00000000001, "<br/>");
+    var balance = 1563.51;
+    document.write("monthly Payment : ", (balance / 12).toFixed(2), "<br/>");
+
+    var randNum = 5;
+    document.write("randNum += 5 = ", randNum += 5, "<br/>");
+    document.write("randNum -= 5 = ", randNum -= 5, "<br/>");
+    document.write("randNum /= 5 = ", randNum /= 5, "<br/>");
+    document.write("randNum *= 5 = ", randNum *= 5, "<br/>");
+    document.write("randNum++ = ", randNum++, "<br/>");
+    document.write("++randNum = ", ++randNum, "<br/>");
+    document.write("randNum-- = ", randNum--, "<br/>");
+    document.write("--randNum = ", --randNum, "<br/>");
+    document.write("3 + 2 * 5 = ", 3 + 2 * 5, "<br/>");
+    document.write("(3 + 2) * 5 = ", (3 + 2) * 5, "<br/>");
+    document.write("Math.E = ", Math.E, "<br/>");
+    document.write("Math.PI = ", Math.PI, "<br/>");
+
+    document.write("Math.abs(-8) = ", Math.abs(-8), "<br/>");
+    document.write("Math.cbrt(100) = ", Math.cbrt(100), "<br/>");
+    document.write("Math.ceil(6.45) = ", Math.ceil(6.45), "<br/>");
+    document.write("Math.floor(6.45) = ", Math.floor(6.45), "<br/>");
+    document.write("Math.round(6.45) = ", Math.round(6.45), "<br/>");
+    document.write("Math.log(10) = ", Math.log(10), "<br/>");
+    document.write("Math.log10(10) = ", Math.log10(10), "<br/>");
+    document.write("Math.max(10, 5) = ", Math.max(10, 5), "<br/>");
+    document.write("Math.min(10, 5) = ", Math.min(10, 5), "<br/>");
+    document.write("Math.pow(4, 2) = ", Math.pow(4, 2), "<br/>");
+    document.write("Math.sqrt(1000) = ", Math.sqrt(1000), "<br/>");
+
+    document.write("Random # (1-10) = ", Math.floor((Math.random() * 10) + 1), "<br/>");
+
+
+    document.write("Convert String : ", Number("3.14"), "<br/>");
+    document.write("Convert Int : ", parseInt("5"), "<br/>");
+    document.write("Convert Float : ", parseFloat("3.14"), "<br/>");
+
+
+    var randStr = "A Long " + "string that goes on and on";
+
+    document.write("String length ", randStr.length, "<br/>");
+    document.write("Index for \"goes\" : ", randStr.indexOf("goes"), "<br/>");
+    document.write(randStr.slice(19, 23), "<br/>");
+    document.write(randStr.slice(19), "<br/>");
+    document.write(randStr.substr(19, 4), "<br/>");
+    document.write(randStr.replace("and on", "forever") + "<br/>");
+    document.write("At Index 2 : ", randStr.charAt(2) + "<br/>");
+
+    var randStrArray = randStr.split(" ");
+
+    randStr = randStr.trim();
+
+    document.write(randStr.toUpperCase() + "<br/>");
+    document.write(randStr.toLowerCase() + "<br/>");
+
+    var strToStyle = "Random String";
+    document.write("Big : ", strToStyle.big(), "<br/>");
+    document.write("Bold : ", strToStyle.bold(), "<br/>");
+    document.write("Font Color : ", strToStyle.fontcolor("blue"), "<br/>");
+    document.write("Font Size : ", strToStyle.fontsize("8em"), "<br/>");
+    document.write("Italics : ", strToStyle.italics(), "<br/>");
+    document.write("Link to Google : ", strToStyle.link("http://google.com"), "<br/>");
+    document.write("Small : ", strToStyle.small(), "<br/>");
+    document.write("Strike : ", strToStyle.strike(), "<br/>");
+    document.write("Sub : ", strToStyle.sub(), "<br/>");
+    document.write("Sup : ", strToStyle.sup(), "<br/>");
+
+</script>
+
+    <script>
+    var a = prompt("Enter something");
+    if (a != null) {
+        document.getElementById("kay").innerHTML = "HELLO " + a;
+    } else {
+        alert("else");
+    }
+</script>-->
+
+
+</body>
+</html>
